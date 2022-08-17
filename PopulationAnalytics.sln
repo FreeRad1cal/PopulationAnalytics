@@ -1,0 +1,33 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30114.105
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{41F2BB58-0910-4884-AD87-7CF6C901CCB7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PopulationAnalytics.Api", "src\PopulationAnalytics.Api\PopulationAnalytics.Api.csproj", "{3E585D26-F702-4633-8D9C-2073B1C13DBF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "docker-compose", "docker-compose.dcproj", "{1FCBE191-34FE-4B2E-8915-CA81553958AD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3E585D26-F702-4633-8D9C-2073B1C13DBF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3E585D26-F702-4633-8D9C-2073B1C13DBF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3E585D26-F702-4633-8D9C-2073B1C13DBF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3E585D26-F702-4633-8D9C-2073B1C13DBF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1FCBE191-34FE-4B2E-8915-CA81553958AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1FCBE191-34FE-4B2E-8915-CA81553958AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1FCBE191-34FE-4B2E-8915-CA81553958AD}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{1FCBE191-34FE-4B2E-8915-CA81553958AD}.Release|Any CPU.Build.0 = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{3E585D26-F702-4633-8D9C-2073B1C13DBF} = {41F2BB58-0910-4884-AD87-7CF6C901CCB7}
+	EndGlobalSection
+EndGlobal
