@@ -1,4 +1,4 @@
-﻿CREATE TABLE Countries (
+﻿CREATE TABLE Regions (
     Id INT NOT NULL,
     Name VARCHAR(255) NOT NULL,
     PRIMARY KEY (id)
@@ -7,14 +7,13 @@
 CREATE TABLE Persons (
     Id INT NOT NULL,
     Identifier VARCHAR(255) NOT NULL,
-    CountryId INT NOT NULL,
+    RegionId INT NOT NULL,
     PRIMARY KEY (id),
     FOREIGN KEY (CountryId)
-        REFERENCES Countries(Id)
+        REFERENCES Regions(Id)
         ON DELETE CASCADE
 );
-CREATE INDEX persons_country_idx ON Persons (CountryId);
-CREATE UNIQUE INDEX persons_identifier_idx ON Persons (Identifier);
+CREATE UNIQUE INDEX persons_region_identifier_idx ON Persons (RegionId, Identifier);
 
 CREATE TABLE Genes (
     Id INT NOT NULL,
