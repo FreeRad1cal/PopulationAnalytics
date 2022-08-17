@@ -14,9 +14,9 @@ services:
     restart: always
     environment:
       POSTGRES_PASSWORD: password
-      POSTGRES_DB: PopulationAnalyticsDb
     volumes:
       - ./data/postgresql/data:/var/lib/postgresql/data
+      - ./data/postgresql/initdb:/docker-entrypoint-initdb.d
   adminer:
     image: adminer
     restart: always

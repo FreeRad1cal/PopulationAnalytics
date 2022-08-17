@@ -11,6 +11,7 @@ services:
       - /bin/sh
       - -c
       - |
-        /flyway/flyway -url=jdbc:postgresql://postgresql/PopulationAnalyticsDb -locations=filesystem:/flyway/sql/PopulationAnalyticsDb -user=postgres -password=password -connectRetries=200 migrate
+        /flyway/flyway -url=jdbc:postgresql://postgresql/PopulationAnalyticsDb -locations=filesystem:/flyway/sql/PopulationAnalyticsDb -user=postgres -password=password -connectRetries=200 migrate \
+        && /flyway/flyway -url=jdbc:postgresql://postgresql/PopulationAnalyticsDb2 -locations=filesystem:/flyway/sql/PopulationAnalyticsDb2 -user=postgres -password=password -connectRetries=200 migrate
     volumes:
-      - ./data/postgresql/migrations/PopulationAnalyticsDb:/flyway/sql
+      - ./data/postgresql/migrations:/flyway/sql

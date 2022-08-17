@@ -16,13 +16,12 @@ CREATE TABLE Persons (
 CREATE INDEX persons_country_idx ON Persons (CountryId);
 CREATE UNIQUE INDEX persons_identifier_idx ON Persons (Identifier);
 
-CREATE TABLE Genes (
+CREATE TABLE Genome (
     Id INT NOT NULL,
-    Name VARCHAR(255) NOT NULL,
-    Value INT NOT NULL,
+    Genes VARCHAR NOT NULL,
     PersonId INT NOT NULL,
     FOREIGN KEY (PersonId)
         REFERENCES Persons(Id)
         ON DELETE CASCADE
 );
-CREATE UNIQUE INDEX genes_person_name_idx ON Genes (PersonId, Name);
+CREATE UNIQUE INDEX genome_person_idx ON Genome (PersonId);
