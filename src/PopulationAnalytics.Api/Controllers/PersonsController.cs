@@ -1,5 +1,7 @@
+using System.Net;
 using Microsoft.AspNetCore.Mvc;
 using PopulationAnalyticsApi.Models;
+using PopulationAnalyticsApi.Models.Dtos;
 using PopulationAnalyticsApi.Services;
 
 namespace PopulationAnalyticsApi.Controllers;
@@ -18,6 +20,7 @@ public class PersonsController : ControllerBase
     }
 
     [HttpGet("")]
+    [ProducesResponseType(typeof(IEnumerable<PersonDto>), (int) HttpStatusCode.OK)]
     public async Task<IActionResult> GetPersonsAsync([FromQuery] GetPersonsRequest request)
     {
         var persons = await _personService.FindAsync(request.RegionId, request.Identifier);
@@ -26,6 +29,7 @@ public class PersonsController : ControllerBase
     }
     
     [HttpGet("{personId:int}")]
+    [ProducesResponseType(typeof(PersonDto), (int) HttpStatusCode.OK)]
     public async Task<IActionResult> GetPersonByIdAsync([FromRoute] int personId)
     {
         var person = await _personService.FindByIdAsync(personId);
@@ -39,6 +43,7 @@ public class PersonsController : ControllerBase
     }
     
     [HttpGet("{personId:int}/genetic-proximity")]
+    [ProducesResponseType(typeof(GeneticProximityDto), (int) HttpStatusCode.OK)]
     public async Task<IActionResult> GetGeneticProximityAsync([FromRoute] int personId, [FromBody] PersonGeneticProximityRequest request)
     {
         var result = await _personService.GetGeneticProximityAsync(personId, request.OtherPersonId, request.ProximityThreshold);

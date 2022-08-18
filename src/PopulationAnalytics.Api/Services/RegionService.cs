@@ -36,8 +36,13 @@ public class RegionService: IRegionService
             };
     }
 
-    public async Task<int> GetGeneticProximityAsync(int regionId, int otherRegionId, int proximityThreshold)
+    public async Task<GeneticProximityDto> GetGeneticProximityAsync(int regionId, int otherRegionId, int proximityThreshold)
     {
-        return await _regionRepository.FindGeneticProximityAsync(regionId, otherRegionId, proximityThreshold);
+        var proximity = await _regionRepository.FindGeneticProximityAsync(regionId, otherRegionId, proximityThreshold);
+
+        return new GeneticProximityDto
+        {
+            GeneticProximity = proximity
+        };
     }
 }

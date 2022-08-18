@@ -46,6 +46,13 @@ public class PersonService: IPersonService
             };
     }
 
-    public async Task<int?> GetGeneticProximityAsync(int personId, int otherPersonId, int proximityThreshold) => 
-        await _personRepository.FindGeneticProximityAsync(personId, otherPersonId, proximityThreshold);
+    public async Task<GeneticProximityDto> GetGeneticProximityAsync(int personId, int otherPersonId, int proximityThreshold)
+    {
+        var proximity = await _personRepository.FindGeneticProximityAsync(personId, otherPersonId, proximityThreshold);
+
+        return new GeneticProximityDto
+        {
+            GeneticProximity = proximity
+        };
+    }
 }
