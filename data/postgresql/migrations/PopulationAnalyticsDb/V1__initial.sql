@@ -9,7 +9,7 @@ CREATE TABLE Persons (
     Identifier VARCHAR(255) NOT NULL,
     RegionId INT NOT NULL,
     PRIMARY KEY (id),
-    FOREIGN KEY (CountryId)
+    FOREIGN KEY (RegionId)
         REFERENCES Regions(Id)
         ON DELETE CASCADE
 );
