@@ -50,9 +50,9 @@ public class PersonRepository: IPersonRepository
                                 JOIN Genes g2
                                 ON g1.Name = g2.Name
                                 WHERE g1.Id < g2.Id 
-                                        && g1.PersonId = @{nameof(personId)} 
-                                        && g2.PersonId = @{nameof(otherPersonId)} 
-                                        && ABS(g1.Value - g2.Value) < @{nameof(proximityThreshold)};
+                                        AND g1.PersonId = @{nameof(personId)} 
+                                        AND g2.PersonId = @{nameof(otherPersonId)} 
+                                        AND ABS(g1.Value - g2.Value) < @{nameof(proximityThreshold)};
                             ";
 
         var response = await connection.QueryAsync<int>(sql, new { personId, otherPersonId, proximityThreshold });
