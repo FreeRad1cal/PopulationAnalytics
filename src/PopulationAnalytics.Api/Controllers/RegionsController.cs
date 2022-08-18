@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using PopulationAnalyticsApi.Models;
+using PopulationAnalyticsApi.Services;
 
 namespace PopulationAnalyticsApi.Controllers;
 
@@ -8,27 +9,45 @@ namespace PopulationAnalyticsApi.Controllers;
 public class RegionsController : ControllerBase
 {
     private readonly ILogger<RegionsController> _logger;
+    private readonly IRegionService _regionService;
 
-    public RegionsController(ILogger<RegionsController> logger)
+    public RegionsController(ILogger<RegionsController> logger, IRegionService regionService)
     {
         _logger = logger;
+        _regionService = regionService;
     }
 
     [HttpGet("")]
-    public async Task<IActionResult> GetRegionsAsync()
+    public async Task<IActionResult> GetRegionsAsync([FromQuery] GetRegionsRequest request)
     {
-        return Ok();
+        var regions = await _regionService.FindAsync(request.Name);
+
+        return Ok(regions);
     }
     
     [HttpGet("{regionId:int}")]
     public async Task<IActionResult> GetRegionByIdAsync([FromRoute] int regionId)
     {
-        return Ok();
+        var person = await _regionService.FindByIdAsync(regionId);
+
+        if (person == null)
+        {
+            return NotFound();
+        }
+
+        return Ok(person);
     }
     
     [HttpGet("{regionId:int}/genetic-proximity")]
-    public async Task<IActionResult> GetRegionGeneticSimilarity([FromRoute] int regionId, [FromBody] RegionGeneticProximityRequest request)
+    public async Task<IActionResult> GetGeneticProximityAsync([FromRoute] int regionId, [FromBody] RegionGeneticProximityRequest request)
     {
-        return Ok();
+        var result = await _regionService.GetGeneticProximityAsync(regionId, request.OtherRegionId, request.ProximityThreshold);
+
+        if (result == null)
+        {
+            return NotFound();
+        }
+
+        return Ok(result);
     }
 }

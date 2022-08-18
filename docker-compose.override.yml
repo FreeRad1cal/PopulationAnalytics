@@ -5,7 +5,7 @@ services:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=http://+:80
     ports:
-      - "5001:80"
+      - "5000:80"
   flyway:
     entrypoint:
       - /bin/sh
