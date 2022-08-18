@@ -17,7 +17,7 @@ CREATE UNIQUE INDEX persons_region_identifier_idx ON Persons (RegionId, Identifi
 
 CREATE TABLE Genome (
     Id SERIAL,
-    Genes VARCHAR NOT NULL,
+    Genes VARCHAR NOT NULL, -- Contains JSON representation of a person's genes: [{Name: Gene_1, Value: 140}, {Name: Gene_2, Value: 99}...]
     PersonId INT NOT NULL,
     FOREIGN KEY (PersonId)
         REFERENCES Persons(Id)

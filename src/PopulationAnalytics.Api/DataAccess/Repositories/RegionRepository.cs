@@ -15,6 +15,12 @@ public class RegionRepository: IRegionRepository
         _connectionFactory = connectionFactory;
     }
 
+    public async Task AddRegionAsync(Region region)
+    {
+        _dbContext.Regions.Add(region);
+        await _dbContext.SaveChangesAsync();
+    }
+
     public async Task<IEnumerable<Region>> FindAsync(string? name)
     {
         var query = _dbContext.Regions.AsNoTracking();

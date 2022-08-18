@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using PopulationAnalyticsApi.Configuration;
 using PopulationAnalyticsApi.DataAccess;
 using PopulationAnalyticsApi.DataAccess.Repositories;
 using PopulationAnalyticsApi.Services;
@@ -23,6 +24,9 @@ builder.Services.AddDbContext<PopulationAnalyticsDbContext>(c =>
         options.EnableRetryOnFailure(maxRetryCount: 15, maxRetryDelay: TimeSpan.FromSeconds(30),
             errorCodesToAdd: Array.Empty<string>());
     }));
+builder.Services.AddSingleton(builder.Configuration.GetRequiredSection("ConfigurationConstants").Get<ConfigurationConstants>());
+builder.Services.AddTransient<IDataImporter, DataImporter>();
+builder.Services.AddTransient<IRowParser, RowParser>();
 
 var app = builder.Build();
 
